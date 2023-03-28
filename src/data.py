@@ -7,6 +7,7 @@ import scipy.misc
 import random
 import sys
 import warnings
+import matplotlib.pyplot as plt
 warnings.simplefilter(action='ignore', category=FutureWarning)  # Silence imresize warning
 
 
@@ -59,7 +60,7 @@ class AchromaticDataset(torch.utils.data.Dataset):
         
     def __getitem__(self, index):
         filename, illuminant = self.data[index]
-        fullres = scipy.ndimage.imread(filename, mode="RGB")
+        fullres = plt.imread(filename, format="RGB")
         image = self._resize(fullres)
         if self.training:
             image = self._random_flip(image)
